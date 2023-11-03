@@ -66,7 +66,7 @@ func TestGetAllGoFileInfoFromDepsByList(t *testing.T) {
 			name: "normal",
 			buildPackage: &build.Package{
 				Name:       "main",
-				ImportPath: "github.com/nguyennm96/swag/v3/testdata/golist",
+				ImportPath: "github.com/nguyennm96/swaggo/v3/testdata/golist",
 				Dir:        "testdata/golist",
 				GoFiles:    []string{"main.go"},
 				CgoFiles:   []string{"api/api.go"},

@@ -6,7 +6,7 @@ import (
 	"github.com/gofrs/uuid"
 	"github.com/shopspring/decimal"
 
-	"github.com/nguyennm96/swag/v3/testdata/simple/cross"
+	"github.com/nguyennm96/swaggo/v3/testdata/simple/cross"
 )
 
 type Pet struct {

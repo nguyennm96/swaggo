@@ -3,8 +3,8 @@ package api
 import (
 	"net/http"
 
-	"github.com/nguyennm96/swag/v3/testdata/generics_basic/types"
-	"github.com/nguyennm96/swag/v3/testdata/generics_basic/web"
+	"github.com/nguyennm96/swaggo/v3/testdata/generics_basic/types"
+	"github.com/nguyennm96/swaggo/v3/testdata/generics_basic/web"
 )
 
 type Response[T any, X any] struct {

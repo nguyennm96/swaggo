@@ -110,7 +110,7 @@ func TestParser_ParseDefinition(t *testing.T) {
 
 	// Parsing existing type
 	definition := &TypeSpecDef{
-		PkgPath: "github.com/swagger/swag",
+		PkgPath: "github.com/nguyennm96/swaggo/v3",
 		File: &ast.File{
 			Name: &ast.Ident{
 				Name: "swag",
@@ -132,7 +132,7 @@ func TestParser_ParseDefinition(t *testing.T) {
 
 	// Parsing *ast.FuncType
 	definition = &TypeSpecDef{
-		PkgPath: "github.com/swagger/swag/model",
+		PkgPath: "github.com/nguyennm96/swaggo/v3/model",
 		File: &ast.File{
 			Name: &ast.Ident{
 				Name: "model",
@@ -150,7 +150,7 @@ func TestParser_ParseDefinition(t *testing.T) {
 
 	// Parsing *ast.FuncType with parent spec
 	definition = &TypeSpecDef{
-		PkgPath: "github.com/swagger/swag/model",
+		PkgPath: "github.com/nguyennm96/swaggo/v3/model",
 		File: &ast.File{
 			Name: &ast.Ident{
 				Name: "model",
@@ -2142,9 +2142,9 @@ func TestParseTypeOverrides(t *testing.T) {
 
 	searchDir := "testdata/global_override"
 	p := New(SetOverrides(map[string]string{
-		"github.com/nguyennm96/swag/v3/testdata/global_override/types.Application":  "string",
-		"github.com/nguyennm96/swag/v3/testdata/global_override/types.Application2": "github.com/nguyennm96/swag/v3/testdata/global_override/othertypes.Application",
-		"github.com/nguyennm96/swag/v3/testdata/global_override/types.ShouldSkip":   "",
+		"github.com/nguyennm96/swaggo/v3/testdata/global_override/types.Application":  "string",
+		"github.com/nguyennm96/swaggo/v3/testdata/global_override/types.Application2": "github.com/nguyennm96/swaggo/v3/testdata/global_override/othertypes.Application",
+		"github.com/nguyennm96/swaggo/v3/testdata/global_override/types.ShouldSkip":   "",
 	}))
 	err := p.ParseAPI(searchDir, mainAPIFile, defaultParseDepth)
 	assert.NoError(t, err)

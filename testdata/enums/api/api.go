@@ -1,6 +1,6 @@
 package api
 
-import "github.com/nguyennm96/swag/v3/testdata/enums/types"
+import "github.com/nguyennm96/swaggo/v3/testdata/enums/types"
 
 //	 post students
 //

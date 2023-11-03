@@ -1,7 +1,7 @@
 package types
 
 import (
-	"github.com/nguyennm96/swag/v3/testdata/enums/consts"
+	"github.com/nguyennm96/swaggo/v3/testdata/enums/consts"
 )
 
 type Class int

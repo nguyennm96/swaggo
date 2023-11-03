@@ -42,7 +42,7 @@ func TestParserParseDefinitionV3(t *testing.T) {
 
 	// Parsing existing type
 	definition := &TypeSpecDef{
-		PkgPath: "github.com/swagger/swag",
+		PkgPath: "github.com/nguyennm96/swaggo/v3",
 		File: &ast.File{
 			Name: &ast.Ident{
 				Name: "swag",
@@ -64,7 +64,7 @@ func TestParserParseDefinitionV3(t *testing.T) {
 
 	// Parsing *ast.FuncType
 	definition = &TypeSpecDef{
-		PkgPath: "github.com/swagger/swag/model",
+		PkgPath: "github.com/nguyennm96/swaggo/v3/model",
 		File: &ast.File{
 			Name: &ast.Ident{
 				Name: "model",
@@ -82,7 +82,7 @@ func TestParserParseDefinitionV3(t *testing.T) {
 
 	// Parsing *ast.FuncType with parent spec
 	definition = &TypeSpecDef{
-		PkgPath: "github.com/swagger/swag/model",
+		PkgPath: "github.com/nguyennm96/swaggo/v3/model",
 		File: &ast.File{
 			Name: &ast.Ident{
 				Name: "model",

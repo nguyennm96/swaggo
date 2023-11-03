@@ -3,7 +3,7 @@ package api
 import (
 	"net/http"
 
-	_ "github.com/nguyennm96/swag/v3/testdata/simple/web"
+	_ "github.com/nguyennm96/swaggo/v3/testdata/simple/web"
 )
 
 // @Summary Add a new pet to the store

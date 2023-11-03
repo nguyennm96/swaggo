@@ -13,7 +13,7 @@ GOPATH:=$(shell $(GOCMD) env GOPATH)
 u := $(if $(update),-u)
 
 BINARY_NAME:=swag
-PACKAGES:=$(shell $(GOLIST) github.com/nguyennm96/swag/v3 github.com/nguyennm96/swag/v3/cmd/swag github.com/nguyennm96/swag/v3/gen github.com/nguyennm96/swag/v3/format)
+PACKAGES:=$(shell $(GOLIST) github.com/nguyennm96/swaggo/v3 github.com/nguyennm96/swaggo/v3/cmd/swag github.com/nguyennm96/swaggo/v3/gen github.com/nguyennm96/swaggo/v3/format)
 GOFILES:=$(shell find . -name "*.go" -type f)
 
 export GO111MODULE := on

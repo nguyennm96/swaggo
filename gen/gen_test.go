@@ -14,7 +14,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nguyennm96/swag/v3"
+	"github.com/nguyennm96/swaggo/v3"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -223,7 +223,7 @@ func TestGen_BuildDescriptionWithQuotes(t *testing.T) {
 			require.NoError(t, err)
 		}
 	}
-	cmd := exec.Command("go", "build", "-buildmode=plugin", "github.com/nguyennm96/swag/v3/testdata/quotes")
+	cmd := exec.Command("go", "build", "-buildmode=plugin", "github.com/nguyennm96/swaggo/v3/testdata/quotes")
 
 	cmd.Dir = config.SearchDir
 
@@ -284,7 +284,7 @@ func TestGen_BuildDocCustomDelims(t *testing.T) {
 		}
 	}
 
-	cmd := exec.Command("go", "build", "-buildmode=plugin", "github.com/nguyennm96/swag/v3/testdata/delims")
+	cmd := exec.Command("go", "build", "-buildmode=plugin", "github.com/nguyennm96/swaggo/v3/testdata/delims")
 
 	cmd.Dir = config.SearchDir
 

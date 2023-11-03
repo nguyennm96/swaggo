@@ -3,7 +3,7 @@ package alias_import
 import (
 	"net/http"
 
-	"github.com/nguyennm96/swag/v3/testdata/alias_import/api"
+	"github.com/nguyennm96/swaggo/v3/testdata/alias_import/api"
 )
 
 // @title Swagger Example API

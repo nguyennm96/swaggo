@@ -3,8 +3,8 @@ package api
 import (
 	"net/http"
 
-	. "github.com/nguyennm96/swag/v3/testdata/v3/simple/cross"
-	_ "github.com/nguyennm96/swag/v3/testdata/v3/simple/web"
+	. "github.com/nguyennm96/swaggo/v3/testdata/v3/simple/cross"
+	_ "github.com/nguyennm96/swaggo/v3/testdata/v3/simple/web"
 )
 
 // @Summary Add a new pet to the store

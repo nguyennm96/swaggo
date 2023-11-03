@@ -1,7 +1,7 @@
 package data
 
 import (
-	typesapplication "github.com/nguyennm96/swag/v3/testdata/alias_import/types"
+	typesapplication "github.com/nguyennm96/swaggo/v3/testdata/alias_import/types"
 )
 
 type ApplicationResponse struct {
