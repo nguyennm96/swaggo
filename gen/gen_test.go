@@ -100,7 +100,7 @@ func TestGen_BuildInstanceName(t *testing.T) {
 
 	if !strings.Contains(
 		string(expectedCode),
-		"swag.Register(SwaggerInfo.InstanceName(), SwaggerInfo)",
+		"swaggo.Register(SwaggerInfo.InstanceName(), SwaggerInfo)",
 	) {
 		t.Fatal(errors.New("generated go code does not contain the correct default registration sequence"))
 	}
@@ -124,7 +124,7 @@ func TestGen_BuildInstanceName(t *testing.T) {
 
 	if !strings.Contains(
 		string(expectedCode),
-		"swag.Register(SwaggerInfoCustom.InstanceName(), SwaggerInfoCustom)",
+		"swaggo.Register(SwaggerInfoCustom.InstanceName(), SwaggerInfoCustom)",
 	) {
 		t.Fatal(errors.New("generated go code does not contain the correct registration sequence"))
 	}
@@ -158,7 +158,7 @@ func TestGen_BuildSnakeCase(t *testing.T) {
 		MainAPIFile:        "./main.go",
 		OutputDir:          "../testdata/simple2/docs",
 		OutputTypes:        outputTypes,
-		PropNamingStrategy: swag.SnakeCase,
+		PropNamingStrategy: swaggo.SnakeCase,
 	}
 
 	assert.NoError(t, New().Build(config))

@@ -21,7 +21,7 @@ cover.out
 .DS_Store
 
 /swag
-/swag.exe
+/swaggo.exe
 cmd/swag/docs/*
 
 .vscode/launch.json

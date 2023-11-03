@@ -1,4 +1,4 @@
-package swag
+package swaggo
 
 import (
 	"errors"
@@ -63,10 +63,10 @@ func ReadDoc(optionalName ...string) (string, error) {
 		name = optionalName[0]
 	}
 
-	swag, ok := swags[name]
+	swaggo, ok := swags[name]
 	if !ok {
 		return "", fmt.Errorf("no swag named \"%s\" was registered", name)
 	}
 
-	return swag.ReadDoc(), nil
+	return swaggo.ReadDoc(), nil
 }

@@ -12,7 +12,7 @@ import (
 // Format implements `fmt` command for formatting swag comments in Go source
 // files.
 type Format struct {
-	formatter *swag.Formatter
+	formatter *swaggo.Formatter
 
 	// exclude exclude dirs and files in SearchDir
 	exclude map[string]bool
@@ -22,7 +22,7 @@ type Format struct {
 func New() *Format {
 	return &Format{
 		exclude:   map[string]bool{},
-		formatter: swag.NewFormatter(),
+		formatter: swaggo.NewFormatter(),
 	}
 }
 

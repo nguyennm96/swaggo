@@ -1,4 +1,4 @@
-package swag
+package swaggo
 
 const (
 	enumVarNamesExtension = "x-enum-varnames"

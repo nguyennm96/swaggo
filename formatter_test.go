@@ -1,4 +1,4 @@
-package swag
+package swaggo
 
 import (
 	"testing"
@@ -191,7 +191,7 @@ func Test_NonSwagComment(t *testing.T) {
 	// @ Accept json
 	// This is not a @swag comment`
 
-	testFormat(t, "non_swag.go", contents, want)
+	testFormat(t, "non_swaggo.go", contents, want)
 }
 
 func Test_EmptyComment(t *testing.T) {

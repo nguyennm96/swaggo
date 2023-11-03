@@ -66,8 +66,8 @@ var initFlags = []cli.Flag{
 	&cli.StringFlag{
 		Name:    propertyStrategyFlag,
 		Aliases: []string{"p"},
-		Value:   swag.CamelCase,
-		Usage:   "Property Naming Strategy like " + swag.SnakeCase + "," + swag.CamelCase + "," + swag.PascalCase,
+		Value:   swaggo.CamelCase,
+		Usage:   "Property Naming Strategy like " + swaggo.SnakeCase + "," + swaggo.CamelCase + "," + swaggo.PascalCase,
 	},
 	&cli.StringFlag{
 		Name:    outputFlag,
@@ -173,7 +173,7 @@ func initAction(ctx *cli.Context) error {
 	strategy := ctx.String(propertyStrategyFlag)
 
 	switch strategy {
-	case swag.CamelCase, swag.SnakeCase, swag.PascalCase:
+	case swaggo.CamelCase, swaggo.SnakeCase, swaggo.PascalCase:
 	default:
 		return fmt.Errorf("not supported %s propertyStrategy", strategy)
 	}
@@ -199,7 +199,7 @@ func initAction(ctx *cli.Context) error {
 		logger = log.New(io.Discard, "", log.LstdFlags)
 	}
 
-	collectionFormat := swag.TransToValidCollectionFormat(ctx.String(collectionFormatFlag))
+	collectionFormat := swaggo.TransToValidCollectionFormat(ctx.String(collectionFormatFlag))
 	if collectionFormat == "" {
 		return fmt.Errorf("not supported %s collectionFormat", ctx.String(collectionFormat))
 	}
@@ -234,9 +234,9 @@ func initAction(ctx *cli.Context) error {
 }
 
 func main() {
-	fmt.Println("Swag version: ", swag.Version)
+	fmt.Println("Swag version: ", swaggo.Version)
 	app := cli.NewApp()
-	app.Version = swag.Version
+	app.Version = swaggo.Version
 	app.Usage = "Automatically generate RESTful API documentation with Swagger 2.0 for Go."
 	app.Commands = []*cli.Command{
 		{

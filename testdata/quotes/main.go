@@ -7,7 +7,7 @@ import (
 )
 
 func ReadDoc() string {
-	doc, _ := swag.ReadDoc()
+	doc, _ := swaggo.ReadDoc()
 	return doc
 }
 

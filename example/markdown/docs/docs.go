@@ -222,7 +222,7 @@ const docTemplate = `{
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
-var SwaggerInfo = &swag.Spec{
+var SwaggerInfo = &swaggo.Spec{
 	Version:          "1.0",
 	Host:             "",
 	BasePath:         "/v2",
@@ -234,5 +234,5 @@ var SwaggerInfo = &swag.Spec{
 }
 
 func init() {
-	swag.Register(SwaggerInfo.InstanceName(), SwaggerInfo)
+	swaggo.Register(SwaggerInfo.InstanceName(), SwaggerInfo)
 }

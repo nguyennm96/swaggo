@@ -1,4 +1,4 @@
-package swag
+package swaggo
 
 import (
 	"github.com/stretchr/testify/assert"

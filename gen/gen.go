@@ -32,7 +32,7 @@ const DefaultOverridesFile = ".swaggo"
 
 type genTypeWriter func(*Config, interface{}) error
 
-// Gen presents a generate tool for swag.
+// Gen presents a generate tool for swaggo.
 type Gen struct {
 	json          func(data interface{}) ([]byte, error)
 	jsonIndent    func(data interface{}) ([]byte, error)
@@ -72,7 +72,7 @@ func New() *Gen {
 
 // Config presents Gen configurations.
 type Config struct {
-	Debugger swag.Debugger
+	Debugger swaggo.Debugger
 
 	// SearchDir the swag would parse,comma separated if multiple
 	SearchDir string
@@ -157,7 +157,7 @@ func (g *Gen) Build(config *Config) error {
 		g.debug = config.Debugger
 	}
 	if config.InstanceName == "" {
-		config.InstanceName = swag.Name
+		config.InstanceName = swaggo.Name
 	}
 
 	searchDirs := strings.Split(config.SearchDir, ",")
@@ -196,19 +196,19 @@ func (g *Gen) Build(config *Config) error {
 
 	g.debug.Printf("Generate swagger docs....")
 
-	p := swag.New(
-		swag.SetParseDependency(config.ParseDependency),
-		swag.SetMarkdownFileDirectory(config.MarkdownFilesDir),
-		swag.SetDebugger(config.Debugger),
-		swag.SetExcludedDirsAndFiles(config.Excludes),
-		swag.SetParseExtension(config.ParseExtension),
-		swag.SetCodeExamplesDirectory(config.CodeExampleFilesDir),
-		swag.SetStrict(config.Strict),
-		swag.SetOverrides(overrides),
-		swag.ParseUsingGoList(config.ParseGoList),
-		swag.SetTags(config.Tags),
-		swag.GenerateOpenAPI3Doc(config.GenerateOpenAPI3Doc),
-		swag.SetCollectionFormat(config.CollectionFormat),
+	p := swaggo.New(
+		swaggo.SetParseDependency(config.ParseDependency),
+		swaggo.SetMarkdownFileDirectory(config.MarkdownFilesDir),
+		swaggo.SetDebugger(config.Debugger),
+		swaggo.SetExcludedDirsAndFiles(config.Excludes),
+		swaggo.SetParseExtension(config.ParseExtension),
+		swaggo.SetCodeExamplesDirectory(config.CodeExampleFilesDir),
+		swaggo.SetStrict(config.Strict),
+		swaggo.SetOverrides(overrides),
+		swaggo.ParseUsingGoList(config.ParseGoList),
+		swaggo.SetTags(config.Tags),
+		swaggo.GenerateOpenAPI3Doc(config.GenerateOpenAPI3Doc),
+		swaggo.SetCollectionFormat(config.CollectionFormat),
 	)
 
 	p.PropNamingStrategy = config.PropNamingStrategy
@@ -249,7 +249,7 @@ func (g *Gen) writeOpenAPI(config *Config, doc interface{}) error {
 func (g *Gen) writeDoc(config *Config, doc interface{}) error {
 	var filename = "docs.go"
 
-	if config.InstanceName != swag.Name {
+	if config.InstanceName != swaggo.Name {
 		filename = config.InstanceName + "_" + filename
 	}
 
@@ -296,7 +296,7 @@ func (g *Gen) writeDoc(config *Config, doc interface{}) error {
 func (g *Gen) writeJSON(config *Config, spec interface{}) error {
 	var filename = "swagger.json"
 
-	if config.InstanceName != swag.Name {
+	if config.InstanceName != swaggo.Name {
 		filename = config.InstanceName + "_" + filename
 	}
 
@@ -320,7 +320,7 @@ func (g *Gen) writeJSON(config *Config, spec interface{}) error {
 func (g *Gen) writeYAML(config *Config, swagger interface{}) error {
 	var filename = "swagger.yaml"
 
-	if config.InstanceName != swag.Name {
+	if config.InstanceName != swaggo.Name {
 		filename = config.InstanceName + "_" + filename
 	}
 

@@ -1,4 +1,4 @@
-package swag
+package swaggo
 
 import (
 	"bytes"
@@ -3804,7 +3804,7 @@ func TestTryAddDescription(t *testing.T) {
 			value := strings.TrimSpace(commentLine[len(attribute):])
 			secAttr, _ := parseSecAttributes(attribute, tt.lines, &line)
 			if !reflect.DeepEqual(secAttr, tt.want) {
-				t.Errorf("setSwaggerSecurity() = %#v, want %#v", swag.SecurityDefinitions[value], tt.want)
+				t.Errorf("setSwaggerSecurity() = %#v, want %#v", swaggo.SecurityDefinitions[value], tt.want)
 			}
 		})
 	}

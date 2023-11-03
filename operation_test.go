@@ -1,4 +1,4 @@
-package swag
+package swaggo
 
 import (
 	"encoding/json"
@@ -722,10 +722,10 @@ func TestParseResponseCommentWithObjectTypeInSameFile(t *testing.T) {
 	comment := `@Success 200 {object} testOwner "Error message, if code != 200"`
 	operation := NewOperation(nil)
 
-	operation.parser.addTestType("swag.testOwner")
+	operation.parser.addTestType("swaggo.testOwner")
 
 	fset := token.NewFileSet()
-	astFile, err := goparser.ParseFile(fset, "operation_test.go", `package swag
+	astFile, err := goparser.ParseFile(fset, "operation_test.go", `package swaggo
 	type testOwner struct {
 
 	}
@@ -745,7 +745,7 @@ func TestParseResponseCommentWithObjectTypeInSameFile(t *testing.T) {
         "200": {
             "description": "Error message, if code != 200",
             "schema": {
-                "$ref": "#/definitions/swag.testOwner"
+                "$ref": "#/definitions/swaggo.testOwner"
             }
         }
     }

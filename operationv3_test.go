@@ -1,4 +1,4 @@
-package swag
+package swaggo
 
 import (
 	goparser "go/parser"
@@ -445,10 +445,10 @@ func TestParseResponseCommentWithObjectTypeInSameFileV3(t *testing.T) {
 	comment := `@Success 200 {object} testOwner "Error message, if code != 200"`
 	operation := NewOperationV3(New())
 
-	operation.parser.addTestType("swag.testOwner")
+	operation.parser.addTestType("swaggo.testOwner")
 
 	fset := token.NewFileSet()
-	astFile, err := goparser.ParseFile(fset, "operation_test.go", `package swag
+	astFile, err := goparser.ParseFile(fset, "operation_test.go", `package swaggo
 	type testOwner struct {
 
 	}
@@ -460,7 +460,7 @@ func TestParseResponseCommentWithObjectTypeInSameFileV3(t *testing.T) {
 
 	response := operation.Responses.Spec.Response["200"]
 	assert.Equal(t, `Error message, if code != 200`, response.Spec.Spec.Description)
-	assert.Equal(t, "#/components/schemas/swag.testOwner", response.Spec.Spec.Content["application/json"].Spec.Schema.Ref.Ref)
+	assert.Equal(t, "#/components/schemas/swaggo.testOwner", response.Spec.Spec.Content["application/json"].Spec.Schema.Ref.Ref)
 }
 
 func TestParseResponseCommentWithObjectTypeErrV3(t *testing.T) {
