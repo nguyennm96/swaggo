@@ -290,8 +290,8 @@ func (pkgDefs *PackagesDefinitions) EvaluateConstValue(pkg *PackageDefinitions, 
 		defer func() {
 			if err := recover(); err != nil {
 				if fi, ok := pkgDefs.files[cv.File]; ok {
-					pos := fi.FileSet.Position(cv.Name.NamePos)
-					pkgDefs.debug.Printf("warning: failed to evaluate const %s at %s:%d:%d, %v", cv.Name.Name, fi.Path, pos.Line, pos.Column, err)
+					_ = fi.FileSet.Position(cv.Name.NamePos)
+					//pkgDefs.debug.Printf("warning: failed to evaluate const %s at %s:%d:%d, %v", cv.Name.Name, fi.Path, pos.Line, pos.Column, err)
 				}
 			}
 		}()

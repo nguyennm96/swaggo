@@ -128,7 +128,7 @@ func (p *Parser) parseGeneralAPIInfoV3(comments []string) error {
 			}
 
 			tag.Spec.ExternalDocs.Spec.Description = value
-		case secBasicAttr, secAPIKeyAttr, secApplicationAttr, secImplicitAttr, secPasswordAttr, secAccessCodeAttr:
+		case secBasicAttr, secAPIKeyAttr, secApplicationAttr, secImplicitAttr, secPasswordAttr, secAccessCodeAttr, secHttpAttr:
 			key, scheme, err := parseSecAttributesV3(attribute, comments, &line)
 			if err != nil {
 				return err
@@ -460,6 +460,10 @@ func parseSecAttributesV3(context string, lines []string, index *int) (string, *
 		scheme.Flows.Spec.AuthorizationCode = spec.NewOAuthFlow()
 		scheme.Flows.Spec.AuthorizationCode.Spec.AuthorizationURL = attrMap[authorizationURL]
 		scheme.Flows.Spec.AuthorizationCode.Spec.TokenURL = attrMap[tokenURL]
+	case secHttpAttr:
+		scheme.Type = "http"
+		scheme.Scheme = "bearer"
+		scheme.BearerFormat = "JWT"
 	}
 
 	scheme.Description = description

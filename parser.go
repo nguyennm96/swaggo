@@ -57,6 +57,7 @@ const (
 	versionAttr              = "@version"
 	descriptionAttr          = "@description"
 	descriptionMarkdownAttr  = "@description.markdown"
+	secHttpAttr              = "@securitydefinitions.http"
 	secBasicAttr             = "@securitydefinitions.basic"
 	secAPIKeyAttr            = "@securitydefinitions.apikey"
 	secApplicationAttr       = "@securitydefinitions.oauth2.application"
@@ -385,7 +386,7 @@ func (parser *Parser) ParseAPI(searchDir string, mainAPIFile string, parseDepth 
 // ParseAPIMultiSearchDir is like ParseAPI but for multiple search dirs.
 func (parser *Parser) ParseAPIMultiSearchDir(searchDirs []string, mainAPIFile string, parseDepth int) error {
 	for _, searchDir := range searchDirs {
-		parser.debug.Printf("Generate general API Info, search dir:%s", searchDir)
+		//parser.debug.Printf("Generate general API Info, search dir:%s", searchDir)
 
 		packageDir, err := getPkgName(searchDir)
 		if err != nil {
@@ -480,7 +481,7 @@ func getPkgName(searchDir string) (string, error) {
 	cmd.Stdout = &stdout
 	cmd.Stderr = &stderr
 
-	fmt.Println("get pkg name for directory:", searchDir)
+	//fmt.Println("get pkg name for directory:", searchDir)
 
 	if err := cmd.Run(); err != nil {
 		return "", fmt.Errorf("execute go list command, %s, stdout:%s, stderr:%s", err, stdout.String(), stderr.String())
