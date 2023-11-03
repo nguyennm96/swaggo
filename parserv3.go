@@ -710,7 +710,7 @@ func (p *Parser) ParseDefinitionV3(typeSpecDef *TypeSpecDef) (*SchemaV3, error) 
 
 	p.structStack = append(p.structStack, typeSpecDef)
 
-	p.debug.Printf("Generating %s", typeName)
+	//p.debug.Printf("Generating %s", typeName)
 
 	definition, err := p.parseTypeExprV3(typeSpecDef.File, typeSpecDef.TypeSpec.Type, false)
 	if err != nil {
