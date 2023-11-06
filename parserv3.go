@@ -291,7 +291,7 @@ func setspecInfo(openAPI *spec.OpenAPI, attribute, value string) {
 		openAPI.Info.Spec.Title = value
 	case tosAttr:
 		openAPI.Info.Spec.TermsOfService = value
-	case descriptionAttr:
+	case descriptionAttr, descriptionMarkdownAttr:
 		openAPI.Info.Spec.Description = value
 	case conNameAttr:
 		if openAPI.Info.Spec.Contact == nil {
