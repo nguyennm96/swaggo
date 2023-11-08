@@ -237,7 +237,7 @@ func main() {
 	fmt.Println("Swag version: ", swaggo.Version)
 	app := cli.NewApp()
 	app.Version = swaggo.Version
-	app.Usage = "Automatically generate RESTful API documentation with Swagger 2.0 for Go."
+	app.Usage = "Automatically generate RESTful API documentation with Swagger 3.0 for Go."
 	app.Commands = []*cli.Command{
 		{
 			Name:    "init",
