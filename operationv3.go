@@ -23,6 +23,8 @@ type OperationV3 struct {
 	spec.Operation
 	RouterProperties  []RouteProperties
 	responseMimeTypes []string
+
+	oneOfRequestBody []*spec.RefOrSpec[spec.Schema]
 }
 
 // NewOperationV3 returns a new instance of OperationV3.
@@ -317,7 +319,6 @@ func (o *OperationV3) ParseParamComment(commentLine string, astFile *ast.File) e
 	if len(matches) != 6 {
 		return fmt.Errorf("missing required param comment parameters \"%s\"", commentLine)
 	}
-
 	name := matches[1]
 	paramType := matches[2]
 	refType := TransToValidSchemeType(matches[3])
@@ -432,7 +433,6 @@ func (o *OperationV3) ParseParamComment(commentLine string, astFile *ast.File) e
 			return nil
 
 		}
-
 		schema, err := o.parseAPIObjectSchema(commentLine, objectType, refType, astFile)
 		if err != nil {
 			return err
@@ -478,13 +478,32 @@ func (o *OperationV3) fillRequestBody(schema *spec.RefOrSpec[spec.Schema], requi
 			o.RequestBody.Spec.Spec.Content["application/json"] = spec.NewMediaType()
 		}
 	}
-
 	o.RequestBody.Spec.Spec.Description = description
 	o.RequestBody.Spec.Spec.Required = required
 
 	for _, value := range o.RequestBody.Spec.Spec.Content {
-		value.Spec.Schema = schema
+		o.oneOfRequestBody = append(o.oneOfRequestBody, schema)
+		if len(o.oneOfRequestBody) == 1 {
+			value.Spec.Schema = schema
+		} else {
+			newSchema := spec.NewSchemaSpec()
+			newSchema.Spec.OneOf = o.oneOfRequestBody
+			value.Spec.Schema = newSchema
+		}
 	}
+	//if value.Spec.Schema.Ref == nil && (value.Spec.Schema.Spec == nil || value.Spec.Schema.Spec.OneOf == nil) {
+	//	value.Spec.Schema = schema
+	//} else {
+	//	if value.Spec.Schema.Spec == nil {
+	//		newSchema := spec.NewSchemaSpec()
+	//		newSchema.Spec.OneOf = append(newSchema.Spec.OneOf, schema)
+	//		value.Spec.Schema = newSchema
+	//	} else {
+	//		fmt.Println("??")
+	//		value.Spec.Schema.Spec.OneOf = append(value.Spec.Schema.Spec.OneOf, schema)
+	//	}
+	//}
+	//}
 }
 
 func (o *OperationV3) parseParamAttribute(comment, objectType, schemaType string, param *spec.Parameter) error {
@@ -536,13 +555,11 @@ func (o *OperationV3) parseParamAttribute(comment, objectType, schemaType string
 
 func (o *OperationV3) parseParamAttributeForBody(comment, objectType, schemaType string, param *spec.Schema) error {
 	schemaType = TransToValidSchemeType(schemaType)
-
 	for attrKey, re := range regexAttributes {
 		attr, err := findAttr(re, comment)
 		if err != nil {
 			continue
 		}
-
 		switch attrKey {
 		case enumsTag:
 			err = setEnumParamV3(param, attr, objectType, schemaType)
@@ -693,7 +710,6 @@ func (o *OperationV3) parseAPIObjectSchema(commentLine, schemaType, refType stri
 			refType += commentLine[allMatchesLenOffset : allMatchesLenOffset+lostPartEndIdx+1]
 		}
 	}
-
 	switch schemaType {
 	case OBJECT:
 		if !strings.HasPrefix(refType, "[]") {
